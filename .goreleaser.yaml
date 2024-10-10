@@ -1,0 +1,33 @@
+project_name: kubectl-decode
+builds:
+  - env:
+    - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+dockers:
+- image_templates:
+  - "ghcr.io/philip-p-jones/kubectl-decode:{{ .Version }}"
+  dockerfile: Dockerfile
+  build_flag_templates:
+  - --label=org.opencontainers.image.title={{ .ProjectName }}
+  - --label=org.opencontainers.image.description={{ .ProjectName }}
+  - --label=org.opencontainers.image.url=https://github.com/philip-p-jones/kubectl-decode
+  - --label=org.opencontainers.image.source=https://github.com/philip-p-jones/kubectl-decode
+  - --label=org.opencontainers.image.version={{ .Version }}
+  - --label=org.opencontainers.image.created={{ time "2024-10-07T10:10:00Z00:00" }}
+  - --label=org.opencontainers.image.revision={{ .FullCommit }}
+  - --label=org.opencontainers.image.licenses=Apache-2.0
+nfpms:
+- maintainer: Philip Jones <philip.jones.gh.d39738fa.8518.11ef@gmail.com>
+  description: kubectl-decode is a tool to decode Kubernetes Secret manifests to stringData for humans.
+  homepage: https://github.com/philip-p-jones/kubectl-decode
+  license: Apache-2.0
+  formats:
+  - deb
+  - rpm
+  - apk
