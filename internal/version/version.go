@@ -19,7 +19,7 @@ import (
 	"fmt"
 )
 
-const Version = "v0.1.4"
+const Version = "v0.1.5"
 
 const ProgramName = "kubectl-decode"
 
